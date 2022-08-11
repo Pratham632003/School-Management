@@ -1,23 +1,11 @@
-import React, { Fragment, useEffect } from "react";
-// import MetaData from "../layout/MetaData";
+import React, { Fragment } from "react";
 import "./Profile.css";
-import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import Loader from "../Loader/Loader";
 
-const Profile = ({ history }) => {
+const Profile = () => {
   const { user, loading, isAuthenticated } = useSelector((state) => state.user);
-  const handler = () => {
-    history.push("/");
-  }
 
-  // useEffect(() => {
-  //       if(isAuthenticated===false)
-  //       {
-  //           // history.push("/")
-  //           handler();
-  //       }
-  // }, [isAuthenticated , history ]);
   return (
     <Fragment>
       {loading ? (
@@ -30,7 +18,6 @@ const Profile = ({ history }) => {
                 <div>
                   <h1>My Profile</h1>
                   <img src={'https://cdn-icons-png.flaticon.com/512/149/149071.png'} alt='https://cdn-icons-png.flaticon.com/512/149/149071.png' />
-                  <Link to="/update/profile">Edit Profile</Link>
                 </div>
                 <div>
                   <div>

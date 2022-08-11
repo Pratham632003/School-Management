@@ -9,7 +9,7 @@
     border-bottom: 1px solid rgb(198, 189, 189);
 }
 
-.header__left > p{
+.header__left > a > p{
     font-size: 1.2rem;
     font-weight: bold;
     color: rgb(50, 46, 46);
@@ -53,5 +53,14 @@
     background-color: white;
     color: #4DCBFA;
     transition: all 0.5s;
+}
 
+a{
+    text-decoration: none;
+}
+
+@media screen and (max-width: 600px) {
+    .header{
+        max-width: 100%;
+    }
 }

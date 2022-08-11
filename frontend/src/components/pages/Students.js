@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect, useState } from 'react';
+import React, { Fragment, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useAlert } from "react-alert";
 import './Students.css';
@@ -12,20 +12,18 @@ function Student() {
     const { users , error } = useSelector(state => state.allUsers);
 
     const updateAttendance = (id) => {
-        console.log(id);
         dispatch(updateUser(id));
         alert.success("Attendance Updated Successfully");
     }
 
     useEffect(() => {
         if(error){
-            // alert.error(error);
+            alert.error(error);
             dispatch(clearErrors);
         }
 
-        console.log(users);
         dispatch(getAllUsers());
-    }, [dispatch , error , users]);
+    }, [dispatch , error , users , alert]);
 
 
     return <Fragment>
@@ -43,7 +41,7 @@ function Student() {
             <tbody>
                 {
                     users && users.map((user, index) => {
-                        return <tr>
+                        return user?.role === "user" ? <tr>
                             <th scope="row">{index + 1}</th>
                             <td>{user.name}</td>
                             <td>{user.email}</td>
@@ -52,7 +50,7 @@ function Student() {
                             ? <td className='red'>{user.attendance}</td> : <td className='green'>{user.attendance}</td>}
                             
                             <td><button onClick={()=>updateAttendance(user._id)}>{user.attendance === "Absent" ? "Mark Present?" : "Mark Absent?"}</button></td>
-                        </tr>
+                        </tr> : null;
                     })
                 }
             </tbody>

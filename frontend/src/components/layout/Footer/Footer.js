@@ -16,7 +16,7 @@ const Footer = () => {
                     <div className='footer__quote'>
                         <p>Our vision is to make all people the best place to study for them</p>
                     </div>
-                    <div className='footer__copyright'>@2021 Scholyyz</div>
+                    <div className='footer__copyright'>@2021 Scholyz</div>
                 </div>
 
                 <div className='footer__right'>

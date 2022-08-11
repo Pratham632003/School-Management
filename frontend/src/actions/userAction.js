@@ -21,7 +21,6 @@ import {
     UPDATE_USER_REQUEST,
     UPDATE_USER_SUCCESS,
     UPDATE_USER_FAIL,
-    UPDATE_USER_RESET,
 } from "../constants/userConstant"
 
 
@@ -98,9 +97,7 @@ export const getAllUsers = () => async(dispatch) => {
         });
 
         const {data} = await axios.get("/api/v1/admin/get/users");
-        console.log(data);
-        console.log("Hi");
-
+        
         dispatch({
             type: ALL_USER_SUCCESS,
             payload: data.users,

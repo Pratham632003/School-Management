@@ -13,7 +13,6 @@ const Login = ({setSigninOpen , setLoginOpen}) => {
     const [password, setPassword] = useState('');
 
     const { error , loading , user } = useSelector((state) => state.user);
-    console.log(user)
 
     const handleSignInOpen = () => {
         setSigninOpen(true);

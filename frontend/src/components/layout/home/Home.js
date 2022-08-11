@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect, useRef, useState } from 'react';
+import React, { Fragment, useEffect,useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import './Home.css';
 import boy from '../images/home.png';
@@ -11,17 +11,41 @@ import Signup from '../Login/Signup';
 import { Link } from "react-router-dom";
 import { useAlert } from "react-alert";
 import {clearErrors} from '../../../actions/userAction';
+import { Doughnut , Line } from "react-chartjs-2";
 
-function Home({ history , location }) {
+function Home({ history}) {
     const [openLogin, setLoginOpen] = useState(false);
     const [openSignin, setSigninOpen] = useState(false);
     const [role , setRole] = useState('user');
     const alert = useAlert();
     const dispatch = useDispatch();
     // const [isAuthenticated, setIsAuthenticated] = useState(false);
-
     
-    const {error , loading , user , isAuthenticated } = useSelector((state) => state.user);
+    const {error , user , isAuthenticated } = useSelector((state) => state.user);
+
+    const lineState = {
+        labels: ["Initial Students" , "Total Teachers"],
+        datasets: [
+            {
+                label: "Total Users",
+                backgroundColor: ["#4DCBFA"],
+                hoverBackgroundColor: ["rgb(197 , 72 , 49)"],
+                data: [0,4000],
+            }
+        ],
+    };
+
+    const doughnutState = {
+        labels: ["Teachers" , "Students"],
+        datasets: [
+            {
+                backgroundColor: ["#4DCBFA","#6800B4"],
+                hoverBackgroundColor: ["#6800B4","#4DCBFA"],
+                data: [3 , 2],
+            },
+        ],
+    }
+
     
     const handleLoginClickOpen = (admin) => {
         admin && setRole('admin');
@@ -39,7 +63,6 @@ function Home({ history , location }) {
           dispatch(clearErrors());
         }
   
-        console.log("Ab theek h")
       }, [dispatch, error, alert, history, isAuthenticated]);
 
     return (
@@ -116,7 +139,6 @@ function Home({ history , location }) {
 
                                     {isAuthenticated && user.role === "user" &&
                                         <>
-                                            <p className='home__button4'>My Profile</p>
                                             <Link to='/profile'><p className='home__button4'>My Profile</p></Link>
                                         </>
                                     }
@@ -128,6 +150,15 @@ function Home({ history , location }) {
                     <div className='home__img'>
                         <img src={boy} alt='home' />
                     </div>
+                </div>
+            </div>
+            <div className='home__chart'>
+                <div className='lineChart'>
+                    <Line data={lineState} />
+                </div>
+
+                <div className='doughnutChart'>
+                    <Doughnut data={doughnutState} />
                 </div>
             </div>
         </Fragment>

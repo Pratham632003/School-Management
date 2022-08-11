@@ -18,12 +18,10 @@ const Login = ({role}) => {
 
 
     
-    const { error , loading , isAuthenticated } = useSelector((state) => state.user);
+    const { error , loading } = useSelector((state) => state.user);
 
     const registerSubmit = (e) => {
       e.preventDefault();
-        console.log(user);
-        console.log(role);
       dispatch(register({name , email , password , role}));
     };
 
@@ -35,7 +33,6 @@ const Login = ({role}) => {
       
     useEffect(() => {
         if(error){
-            console.log("error" , error)
             dispatch(clearErrors());
         }
     }, [error , dispatch ]);
