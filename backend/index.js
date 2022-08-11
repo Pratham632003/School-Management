@@ -9,11 +9,6 @@ const fileUpload = require("express-fileupload");
 /* For production */
 const path = require('path');
 
-const CLOUDINARY_NAME = "dctsq7knn";
-const CLOUDINARY_API_KEY = "433448672311676";
-const CLOUDINARY_API_SECRET = "xopDdT8GqKMv8rIYgfFZ6_xefaA";
-
-
 //Config
 require('dotenv').config({ path: './config/config.env' });
 
@@ -37,12 +32,6 @@ connectToMongo();
 const app = express();
 // const PORT = 4000;
 
-
-cloudinary.config({
-  cloud_name: process.env.CLOUDINARY_NAME,
-  api_key: process.env.CLOUDINARY_API_KEY,
-  api_secret: process.env.CLOUDINARY_API_SECRET
-})
 
 const corsOptions ={
   origin:'http://localhost:3000', 
